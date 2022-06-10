@@ -4,6 +4,8 @@ import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.Objects;
+
 /**
  * @author : lin.chen1
  * @version : 1.0.0.0
@@ -22,5 +24,17 @@ public class RootVO {
     @ToString.Exclude()
     @JSONField(serialize = false)
     String href;
+    String key;
+    boolean related;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (this.key.equals(((RootVO) obj).key));
+    }
 
 }

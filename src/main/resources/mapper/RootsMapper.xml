@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logbug.webdriver.mapper.RootsMapper">
+
+    <resultMap id="BaseResultMap" type="com.logbug.webdriver.entity.Roots">
+            <result property="root" column="root" jdbcType="VARCHAR"/>
+            <result property="hasAudio" column="has_audio" jdbcType="TINYINT"/>
+            <result property="common" column="common" jdbcType="TINYINT"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="description" column="`description`" jdbcType="CLOB"/>
+            <result property="content" column="content" jdbcType="CLOB"/>
+            <result property="key" column="_key" jdbcType="VARCHAR"/>
+            <result property="related" column="related" jdbcType="TINYINT"/>
+    </resultMap>
+
+</mapper>

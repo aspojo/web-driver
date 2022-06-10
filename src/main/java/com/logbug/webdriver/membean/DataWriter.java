@@ -3,7 +3,11 @@ package com.logbug.webdriver.membean;
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.logbug.webdriver.service.RootcastsService;
+import com.logbug.webdriver.service.RootsService;
 import lombok.Data;
+import org.checkerframework.checker.units.qual.A;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -17,10 +21,16 @@ import java.util.List;
 @Service
 @Data
 public class DataWriter {
-    List<RootVO> roots;
-    List<RootcastVO> rootcasts;
+
+    @Autowired
+    RootsService rootsService;
+    @Autowired
+    RootcastsService rootcastsService;
 
     public void writeData(){
-        FileUtil.writeUtf8String(JSONObject.toJSONString(this),new File("data.json"));
+        JSONObject json=new JSONObject();
+        json.put("roots",rootsService.lambdaQuery().list());
+        json.put("rootcasts",rootcastsService.lambdaQuery().list());
+        FileUtil.writeUtf8String(json.toString(),new File("data.json"));
     }
 }
